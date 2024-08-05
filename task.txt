@@ -1,0 +1,5 @@
+product- productname,product quantity and price
+user-   username,address,isMarried
+teacher,books,classroom
+
+college,department,student,trainne,bike

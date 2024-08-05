@@ -1,0 +1,47 @@
+CRUD
+
+C   CREATE  create
+
+R   READ    ReadSpecific    findById
+            Readall         find
+
+U   UPDATE                  findByIdAndUpdate
+
+D   DELETE                  findByIdAndDelete
+
+
+
+API defines task for each request
+
+
+BACKEND FLOW:
+    schema
+    model
+    controller
+    router
+    index
+
+
+
+
+Error
+INFORMATIONAL RESPONSE  100-199
+SUCCESSFULL RESPONSE    200-299
+REDIRECTION MESSAGE     300-399
+CLIENT ERROR RESPONSE   400-499
+SERVER ERROR            500-599
+
+
+
+200     OK
+201     CREATED
+
+
+
+400     BAD request
+401     UNAUTHORIZED
+403     FORBIDDEN
+404     NOT FOUND
+
+
+500     INTERNAL SERVER ERROR

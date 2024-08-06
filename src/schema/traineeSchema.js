@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export let traineeSchema = new mongoose.Schema({
-  trainneName: {
+  traineeName: {
     type: String,
     required: [true, "traineeName required"],
   },

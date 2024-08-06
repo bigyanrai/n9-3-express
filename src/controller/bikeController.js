@@ -1,13 +1,13 @@
-import { Department, User } from "../schema/model.js";
+import { Bike } from "../schema/model.js";
 
-export const createUserController = async (req, res, next) => {
+export const createBikeController = async (req, res, next) => {
   try {
     let data = req.body;
-    let result = await User.create(data);
+    let result = await Bike.create(data);
 
     res.json({
       success: true,
-      message: "user created successfully",
+      message: "Bike created successfully",
       data: result,
     });
   } catch (error) {
@@ -18,13 +18,13 @@ export const createUserController = async (req, res, next) => {
   }
 };
 
-export const readAllUserController = async (req, res, next) => {
+export const readAllBikeController = async (req, res, next) => {
   try {
     let data = req.body;
-    let result = await User.find({});
+    let result = await Bike.find({});
     res.json({
       success: true,
-      message: "user created successfully",
+      message: "Bike read successfully",
       data: result,
     });
   } catch (error) {
@@ -35,12 +35,12 @@ export const readAllUserController = async (req, res, next) => {
   }
 };
 
-export const readSpecificUserController = async (req, res, next) => {
+export const readSpecificBikeController = async (req, res, nex) => {
   try {
-    let result = await User.findById(req.params.id);
+    let result = await Bike.findById(req.params.id);
     res.json({
       success: true,
-      message: "Specific User read successfully",
+      message: "Bike specific read successfully",
       data: result,
     });
   } catch (error) {
@@ -51,14 +51,14 @@ export const readSpecificUserController = async (req, res, next) => {
   }
 };
 
-export const updateUserController = async (req, res, next) => {
+export const updateBikeController = async (req, res, next) => {
   try {
-    let result = await User.findByIdAndUpdate(req.params.id, req.body, {
+    let result = await Bike.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     res.json({
       success: true,
-      message: "Specific User updated successfully",
+      message: "Bike update successfully",
       data: result,
     });
   } catch (error) {
@@ -69,13 +69,13 @@ export const updateUserController = async (req, res, next) => {
   }
 };
 
-export const deleteUserController = async (req, res, next) => {
+export const deleteBikeController = async (req, res, next) => {
   try {
-    let result = await User.findByIdAndDelete(req.params.id);
+    let result = await Bike.findByIdAndDelete(req.params.id);
     res.json({
       success: true,
-      message: " User deleted successfully",
-      data: result,
+      message: "Bike deleted succesfuuly",
+      result,
     });
   } catch (error) {
     res.json({

@@ -29,6 +29,6 @@ export const Department = mongoose.model("department", departmentSchema);
 
 export const Student = mongoose.model("student", studentSchema);
 
-export const Trainnee = mongoose.model("trainee", traineeSchema);
+export const Trainee = mongoose.model("trainee", traineeSchema);
 
 export const Bike = mongoose.model("bike", bikeSchema);

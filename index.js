@@ -8,6 +8,11 @@ import bookRouter from "./src/router/bookRouter.js";
 import classroomRouter from "./src/router/classroomRouter.js";
 import webUserRouter from "./src/router/webUserRouter.js";
 import collegeRouter from "./src/router/collegeRouter.js";
+import departmentRouter from "./src/router/departmentRouter.js";
+import studentRouter from "./src/router/studentRouter.js";
+import traineeRouter from "./src/router/traineeRouter.js";
+import bikeRouter from "./src/router/bikeRouter.js";
+
 const myApp = express();
 
 const port = 3000;
@@ -22,15 +27,11 @@ myApp.use("/teacher", teacherRouter);
 myApp.use("/classroom", classroomRouter);
 myApp.use("/book", bookRouter);
 myApp.use("/web-user", webUserRouter);
-
 myApp.use("/college", collegeRouter);
-
-// myApp.get("/home", (req, res) => {
-
-//   res.send("get home");
-// });
-
-// console.log("hello");
+myApp.use("/department", departmentRouter);
+myApp.use("/student", studentRouter);
+myApp.use("/trainee", traineeRouter);
+myApp.use("/bike", bikeRouter);
 
 myApp.listen(port, () => {
   console.log(`Express is running at ${port}`);

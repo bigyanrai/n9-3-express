@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 export let bikeSchema = new mongoose.Schema({
-  Model: {
+  model: {
     type: String,
     required: [true, "Model required"],
   },
-  Manufacturer: {
+  manufacturer: {
     type: String,
     required: [true, "manufacturer required"],
   },

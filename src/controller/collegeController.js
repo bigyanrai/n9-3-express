@@ -48,9 +48,10 @@ export const readSpecificCollegeController = async (req, res, nex) => {
 
 export const updateCollegeController = async (req, res, next) => {
   try {
-    let result = await Product.findByIdAndUpdate(req.params.id, req.body, {
+    let result = await College.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
+    console.log(result);
     res.json({
       success: true,
       message: "college update successfully",
@@ -66,7 +67,7 @@ export const updateCollegeController = async (req, res, next) => {
 
 export const deleteCollegeController = async (req, res, next) => {
   try {
-    let result = await Product.findByIdAndDelete(req.params.id);
+    let result = await College.findByIdAndDelete(req.params.id);
     res.json({
       success: true,
       message: "College deleted succesfuuly",

@@ -51,6 +51,52 @@ export const createWebuserController = async (req, res, next) => {
   }
 };
 
+export const login = async (req, res, next) => {
+  try {
+    let email = req.body.email;
+    let password = req.body.password;
+
+    let user = await WebUser.findOne({ email: email });
+
+    if (!user) {
+      throw new Error("Invalid credentials");
+    }
+
+    if (!user.isVerifiedEmail) {
+      throw new Error("Email is not verified");
+    }
+
+    //compare postman password with database hash password
+    let isValidPassword = await bcrypt.compare(password, user.password);
+
+    if (!isValidPassword) {
+      throw new Error("Invalid credentials");
+    }
+
+    let infoObj = {
+      id: user.id,
+    };
+
+    let expiryInfo = {
+      expiresIn: "100d",
+    };
+
+    let token = await jwt.sign(infoObj, secretKey, expiryInfo);
+
+    res.status(200).json({
+      success: true,
+      message: "User Login successful",
+      user: user,
+      token: token,
+    });
+  } catch (error) {
+    res.json({
+      sucess: false,
+      message: error.message,
+    });
+  }
+};
+
 export const readAllWebUserController = async (req, res, next) => {
   try {
     let result = await WebUser.find({});

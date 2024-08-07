@@ -229,3 +229,70 @@ export const updateProfile = async (req, res, next) => {
     });
   }
 };
+
+export const updatePassword = async (req, res, next) => {
+  try {
+    let id = req._id;
+    let oldPassword = req.body.oldPassword;
+    let newPassword = req.body.newPassword;
+
+    let data = await WebUser.findById(id);
+
+    let hashedPassword = data.password;
+
+    let isValidPassword = await bcrypt.compare(oldPassword, hashedPassword);
+
+    if (isValidPassword) {
+      let newHashedPassword = await bcrypt.hash(newPassword, 10);
+      let result = await WebUser.findByIdAndUpdate(
+        id,
+        { password: newHashedPassword },
+        { new: true }
+      );
+      res.json({
+        success: true,
+        message: "Password updated successfully",
+        result: result,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const fortgotPassword = async (req, res, next) => {
+  try {
+    let email = req.body.email;
+    let result = await WebUser.findOne({ email: email });
+
+    if (result) {
+      let infoObj = {
+        id: result.id,
+      };
+
+      let expiryInfo = {
+        expiresIn: "1d",
+      };
+      let token = await jwt.sign(infoObj, secretKey, expiryInfo);
+      await sendEmail({
+        to: email,
+        subject: "Reset Password",
+        html: `<h1>Please click on this link to reset password</h1>
+        <a href="http://localhost:3000/reset-password?token=${token}">href="http://localhost:3000/reset-password?token=${token}</a>`,
+      });
+
+      res.status(200).json({
+        success: true,
+        message: "password reset link has been created",
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "password reset link has not  been created",
+    });
+  }
+};

@@ -2,10 +2,12 @@ import { Router } from "express";
 import {
   createWebuserController,
   deleteWebUserController,
+  fortgotPassword,
   login,
   myProfile,
   readAllWebUserController,
   readSpecificWebUserController,
+  updatePassword,
   updateProfile,
   updateWebUserController,
   verifyEmail,
@@ -23,6 +25,8 @@ webUserRouter.route("/login").post(login);
 
 webUserRouter.route("/my-profile").get(isAuthenticated, myProfile);
 webUserRouter.route("/update-profile").patch(isAuthenticated, updateProfile);
+webUserRouter.route("/update-password").patch(isAuthenticated, updatePassword);
+webUserRouter.route("/forgot-password").post(fortgotPassword);
 
 webUserRouter.route("/:id").get(readSpecificWebUserController);
 webUserRouter.route("/:id").patch(updateWebUserController);

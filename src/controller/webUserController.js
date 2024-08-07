@@ -191,3 +191,41 @@ export const verifyEmail = async (req, res, next) => {
     });
   }
 };
+
+export const myProfile = async (req, res, next) => {
+  try {
+    let id = req._id;
+    let result = await WebUser.findById(id);
+    res.status(200).json({
+      success: true,
+      message: "web user profile read successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const updateProfile = async (req, res, next) => {
+  try {
+    let _id = req._id;
+    let data = req.body;
+    delete data.email;
+    delete data.password;
+    console.log(req);
+    let result = await WebUser.findByIdAndUpdate(_id, data, { new: true });
+    res.status(200).json({
+      success: true,
+      message: "webUser profile updated successfuuly",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

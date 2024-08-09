@@ -287,12 +287,35 @@ export const fortgotPassword = async (req, res, next) => {
       res.status(200).json({
         success: true,
         message: "password reset link has been created",
+        token: token,
       });
     }
   } catch (error) {
     res.status(400).json({
       success: false,
       message: "password reset link has not  been created",
+    });
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  try {
+    let hashedPassword = await bcrypt.hash(req.body.password, 10);
+    let result = await WebUser.findByIdAndUpdate(
+      req._id,
+      {
+        password: hashedPassword,
+      },
+      { new: true }
+    );
+    res.status(200).json({
+      success: true,
+      message: "Password reset successfully",
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
     });
   }
 };

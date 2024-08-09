@@ -38,7 +38,17 @@ webUserRouter.route("/update-password").patch(isAuthenticated, updatePassword);
 webUserRouter.route("/forgot-password").post(fortgotPassword);
 webUserRouter.route("/reset-password").post(isAuthenticated, resetPassword);
 
-webUserRouter.route("/:id").get(readSpecificWebUserController);
-webUserRouter.route("/:id").patch(updateWebUserController);
-webUserRouter.route("/:id").delete(deleteWebUserController);
+webUserRouter
+  .route("/:id")
+  .get(
+    isAuthenticated,
+    isAuthorization(["admin", "superAdmin"]),
+    readSpecificWebUserController
+  );
+webUserRouter
+  .route("/:id")
+  .patch(isAuthenticated, isAuthorization, updateWebUserController);
+webUserRouter
+  .route("/:id")
+  .delete(isAuthenticated, isAuthorization, deleteWebUserController);
 export default webUserRouter;

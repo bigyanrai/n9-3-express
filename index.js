@@ -12,6 +12,7 @@ import departmentRouter from "./src/router/departmentRouter.js";
 import studentRouter from "./src/router/studentRouter.js";
 import traineeRouter from "./src/router/traineeRouter.js";
 import bikeRouter from "./src/router/bikeRouter.js";
+import fileRouter from "./src/router/fileRouter.js";
 
 const myApp = express();
 
@@ -32,6 +33,7 @@ myApp.use("/department", departmentRouter);
 myApp.use("/student", studentRouter);
 myApp.use("/trainee", traineeRouter);
 myApp.use("/bike", bikeRouter);
+myApp.use("/file", fileRouter);
 
 myApp.listen(port, () => {
   console.log(`Express is running at ${port}`);

@@ -3,3 +3,8 @@ user-   username,address,isMarried
 teacher,books,classroom
 
 college,department,student,trainne,bike
+
+
+review controller(create, read update,delete)
+
+review schema(product id,user id,description)

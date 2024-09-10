@@ -42,7 +42,7 @@ webUserRouter
   .route("/:id")
   .get(
     isAuthenticated,
-    isAuthorization(["admin", "superAdmin"]),
+    isAuthorization(["superAdmin"]),
     readSpecificWebUserController
   );
 webUserRouter
@@ -50,5 +50,9 @@ webUserRouter
   .patch(isAuthenticated, isAuthorization, updateWebUserController);
 webUserRouter
   .route("/:id")
-  .delete(isAuthenticated, isAuthorization, deleteWebUserController);
+  .delete(
+    isAuthenticated,
+    isAuthorization(["superAdmin"]),
+    deleteWebUserController
+  );
 export default webUserRouter;

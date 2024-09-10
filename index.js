@@ -14,10 +14,13 @@ import traineeRouter from "./src/router/traineeRouter.js";
 import bikeRouter from "./src/router/bikeRouter.js";
 import fileRouter from "./src/router/fileRouter.js";
 
+import cors from "cors";
+
 const myApp = express();
 
 const port = 3000;
 
+myApp.use(cors());
 myApp.use(json()); //read json data
 
 connectDB();

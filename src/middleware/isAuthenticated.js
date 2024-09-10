@@ -5,6 +5,7 @@ const isAuthenticated = async (req, res, next) => {
   try {
     //get token from postman
     let tokenString = req.headers.authorization;
+    console.log(tokenString);
     let tokenArray = tokenString.split(" ");
     let token = tokenArray[1];
 

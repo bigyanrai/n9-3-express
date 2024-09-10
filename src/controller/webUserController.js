@@ -32,15 +32,15 @@ export const createWebuserController = async (req, res, next) => {
       to: data.email,
       subject: "Account Registration",
       html: `<h1>Your account has been registered successfuly</h1>
-      <a href="http://localhost:3000/verify-email?token=${token}">
-      href=http://localhost:3000/verify-email?token=${token}
+      <a href="http://localhost:5173/verify-email?token=${token}">
+      href=http://localhost:5173/verify-email?token=${token}
       <a/>
       `,
     });
 
     res.json({
       success: true,
-      message: "web user created successfully",
+      message: "Verification link has been sent to your email",
       data: result,
     });
   } catch (error) {
@@ -62,7 +62,7 @@ export const login = async (req, res, next) => {
       throw new Error("Invalid credentials");
     }
 
-    if (!user.isVerifiedEmail) {
+    if (user.isVerifiedEmail === "false") {
       throw new Error("Email is not verified");
     }
 
@@ -281,7 +281,7 @@ export const fortgotPassword = async (req, res, next) => {
         to: email,
         subject: "Reset Password",
         html: `<h1>Please click on this link to reset password</h1>
-        <a href="http://localhost:3000/reset-password?token=${token}">href="http://localhost:3000/reset-password?token=${token}</a>`,
+        <a href="http://localhost:5173/reset-password?token=${token}">http://localhost:5173/reset-password?token=${token}</a>`,
       });
 
       res.status(200).json({
